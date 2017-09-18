@@ -3121,12 +3121,6 @@ function PMA_checkPassword($the_form)
 }
 
 /**
- * Unbind all event handlers before tearing down a page
- */
-AJAX.registerTeardown('functions.js', function () {
-    $(document).off('click', '#change_password_anchor.ajax');
-});
-/**
  * Attach Ajax event handlers for 'Change Password' on index.php
  */
 AJAX.registerOnload('functions.js', function () {
@@ -3191,13 +3185,19 @@ AJAX.registerOnload('functions.js', function () {
     });
 
     /**
+     * Unbind all event handlers before tearing down a page
+     */
+    $(document).off('click', '#change_password_anchor.ajax');
+
+    /**
      * Attach Ajax event handler on the change password anchor
      */
+
     $(document).on('click', '#change_password_anchor.ajax', function (event) {
         event.preventDefault();
-
+        console.log("#");
         var $msgbox = PMA_ajaxShowMessage();
-
+        // $('#change_password_anchor.ajax').bind("click");
         /**
          * @var button_options  Object containing options to be passed to jQueryUI's dialog
          */
